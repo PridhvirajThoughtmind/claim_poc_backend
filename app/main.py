@@ -1,4 +1,5 @@
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 from app.db_prestart import populate_db
 from app.routers import patients,doctors, insurance, claims, queries, ai, dashboard
 
@@ -12,6 +13,18 @@ async def startup_event():
 @app.get("/healthcheck")
 async def healthcheck():
     return {"status": "working"}
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=[
+        "http://localhost:3000",   # React dev server
+        "http://127.0.0.1:3000",
+        "*",  # for development only, allows all origins
+    ],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 app.include_router(patients.router, prefix="/patients", tags=["patients"])
 app.include_router(doctors.router, prefix="/doctors", tags=["doctors"])
