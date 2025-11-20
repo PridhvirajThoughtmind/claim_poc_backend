@@ -51,8 +51,16 @@ class CrudPatient(CRUDBase[Patients, PatientCreate, PatientUpdate]):
             selectinload(Patients.queries_rel)
         ).where(Patients.id == id)
         result = await db.execute(query)
-        return result.scalars().first()
+        patient = result.scalars().first()
+        if getattr(patient, "doctor_rel", None):
+            setattr(patient, "doctor", patient.doctor_rel)
+        if getattr(patient, "insurance_rel", None):
+            ins = patient.insurance_rel
+            setattr(patient, "insurance_provider", getattr(ins, "provider", None))
+            setattr(patient, "claim_status", getattr(ins, "status", None))
 
+        return patient
+    
     async def update_queries_count(self, db: AsyncSession, *, patient_id: int):
         query_count = await db.scalar(select(func.count(Queries.id)).where(Queries.patient_id == patient_id))
         await db.execute(
