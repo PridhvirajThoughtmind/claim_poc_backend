@@ -46,3 +46,8 @@ from app.schemas.clinical_summary import (
     ClinicalSummaryUpdateInput,
     ClinicalSummaryWithCount,
 )
+
+from app.schemas.ai import (
+    GenerateResponseRequest,
+    GenerateResponseResponse,
+)

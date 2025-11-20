@@ -1,7 +1,9 @@
+from fastapi.encoders import jsonable_encoder
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import select, func, or_
 from typing import List, Optional
 from app.crud.base import CRUDBase
+from app import crud
 from app.models.patients import Patients
 from app.schemas.patients import PatientCreate, PatientUpdate, PatientWithCount
 from app.models.doctors import Doctors
@@ -12,20 +14,34 @@ from sqlalchemy.orm import selectinload
 
 
 class CrudPatient(CRUDBase[Patients, PatientCreate, PatientUpdate]):
-    async def get_multi_with_pagination(
-        self, db: AsyncSession, *, page: int = 1, limit: int = 10, search: Optional[str] = None, status: Optional[str] = None
-    ) -> PatientWithCount:
-        query = select(Patients)
+    async def get_multi(self, db: AsyncSession, *, search: Optional[str] = None, status: Optional[str] = None):
+        """Fetch all patients (optionally filtered) and attach doctor and insurance summary."""
+        # eager-load related doctor and insurance to avoid N+1
+        query = select(Patients).options(selectinload(Patients.doctor_rel), selectinload(Patients.insurance_rel))
         if search:
             query = query.where(Patients.name.ilike(f"%{search}%"))
         if status:
             query = query.join(Insurance).where(Insurance.status.ilike(f"%{status}%"))
-        total = await db.scalar(select(func.count()).select_from(query.subquery()))
-        offset = (page - 1) * limit
-        query = query.offset(offset).limit(limit)
+
         result = await db.execute(query)
         patients = result.scalars().all()
-        return PatientWithCount(total=total, page=page, result=patients)
+        for p in patients:
+                # doctor: prefer loaded relation, fallback to CRUD get()
+
+                # insurance (we only attach provider and status for the list view)
+                try:
+                    if getattr(p, "doctor_rel", None):
+                        setattr(p, "doctor", p.doctor_rel)
+                    # prefer loaded relation
+                    if getattr(p, "insurance_rel", None):
+                        ins = p.insurance_rel
+                        setattr(p, "insurance_provider", getattr(ins, "provider", None))
+                        setattr(p, "claim_status", getattr(ins, "status", None))
+                except Exception:
+                     setattr(p, "insurance_provider", None)
+                     setattr(p, "claim_status", None)
+
+        return patients
 
     async def get_detailed(self, db: AsyncSession, *, id: int) -> Optional[Patients]:
         query = select(Patients).options(

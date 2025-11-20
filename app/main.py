@@ -6,8 +6,12 @@ app = FastAPI()
 
 @app.on_event("startup")
 async def startup_event():
+    print("printing for fun")
     await populate_db()
 
+@app.get("/healthcheck")
+async def healthcheck():
+    return {"status": "working"}
 
 app.include_router(patients.router, prefix="/patients", tags=["patients"])
 app.include_router(doctors.router, prefix="/doctors", tags=["doctors"])
@@ -17,6 +21,3 @@ app.include_router(queries.router, prefix="/queries", tags=["queries"])
 app.include_router(ai.router, prefix="/ai", tags=["ai"])
 app.include_router(dashboard.router, prefix="/dashboard", tags=["dashboard"])
 
-@app.get("/healthcheck")
-async def healthcheck():
-    return {"status": "working"}

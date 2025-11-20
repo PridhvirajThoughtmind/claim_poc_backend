@@ -11,7 +11,13 @@ router = APIRouter()
 async def read_patients(
     page: int = 1, limit: int = 10, search: str = None, status: str = None, db: AsyncSession = Depends(get_db)
 ):
-    return await crud.patients.get_multi_with_pagination(db, page=page, limit=limit, search=search, status=status)
+    # The new get_multi returns a list of Patients with `doctor` attached per object.
+    patients = await crud.patients.get_multi(db, search=search, status=status)
+    total = len(patients)
+    # apply pagination in the router for compatibility with existing response model
+    offset = (page - 1) * limit
+    result = patients[offset: offset + limit]
+    return schemas.PatientWithCount(total=total, page=page, result=result)
 
 @router.get("/{patient_id}", response_model=schemas.Patient)
 async def read_patient(patient_id: int, db: AsyncSession = Depends(get_db)):

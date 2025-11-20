@@ -1,0 +1,201 @@
+[
+  {
+    "medicalHistory": {
+      "allergies": "None",
+      "pastMedicalHistory": ["Seasonal flu episodes"],
+      "surgicalHistory": []
+    },
+    "pastVisits": [
+      {
+        "visitId": "VIS-2021-3342",
+        "date": "2021-11-02",
+        "department": "General Medicine",
+        "complaint": "Sore throat, mild fever",
+        "diagnosis": "Throat infection",
+        "treatment": "Azithromycin + saline gargles",
+        "outcome": "Recovered in 3 days",
+        "summary": "Patient was treated for a mild throat infection with antibiotics and supportive care. No complications noted."
+      },
+      {
+        "visitId": "VIS-2023-9981",
+        "date": "2023-06-18",
+        "department": "Dermatology",
+        "complaint": "Rashes on arms",
+        "diagnosis": "Allergic dermatitis",
+        "treatment": "Topical corticosteroid cream",
+        "outcome": "Discharged same day",
+        "summary": "Skin rash caused by mild allergy; treated with topical medication. Symptoms resolved quickly."
+      }
+    ],
+    "currentAdmission": {
+      "admissionId": "ADM-2025-1109",
+      "admissionDate": "2025-11-20",
+      "reason": "High fever, yellowing of eyes and skin",
+      "conditionOnArrival": "Weak, dehydrated, febrile",
+      "triageLevel": "Yellow",
+      "diagnoses": [
+        "Acute viral hepatitis (suspected)",
+        "Jaundice",
+        "Severe dehydration",
+        "High-grade fever"
+      ],
+      "vitalSigns": {
+        "temperature": "39.8°C",
+        "bloodPressure": "112/74 mmHg",
+        "pulse": 104,
+        "respiratoryRate": 20,
+        "oxygenSaturation": "97% (Room Air)"
+      },
+      "labResults": {
+        "cbc": {
+          "hemoglobin": "13.1 g/dL",
+          "wbc": "11,200 /µL (elevated)",
+          "platelets": "210,000 /µL"
+        },
+        "liverFunctionTest": {
+          "bilirubinTotal": "6.8 mg/dL (high)",
+          "bilirubinDirect": "4.2 mg/dL",
+          "sgpt": "315 U/L",
+          "sgot": "289 U/L",
+          "alkalinePhosphatase": "142 U/L"
+        },
+        "viralMarkers": {
+          "hepatitisA": "Pending",
+          "hepatitisE": "Pending",
+          "hepatitisB": "Negative",
+          "dengueNS1": "Negative"
+        }
+      },
+      "imaging": {
+        "ultrasoundAbdomen": {
+          "date": "2025-11-20",
+          "findings": [
+            "Liver mildly enlarged",
+            "No gallstones",
+            "No ascites",
+            "Bile ducts normal"
+          ]
+        }
+      },
+      "treatmentPlan": {
+        "fluids": "IV normal saline 125 ml/hr",
+        "antipyretics": "Paracetamol 1g IV every 8 hrs",
+        "liverSupport": "Hepatoprotective syrup (oral)",
+        "antiemetics": "Ondansetron IV as needed",
+        "monitoring": "Vitals every 4 hours, LFT repeat after 48 hrs",
+        "diet": "Soft diet, no oily foods, high hydration"
+      },
+      "currentMedications": [
+        {
+          "name": "Paracetamol",
+          "dose": "1 g",
+          "route": "IV",
+          "frequency": "q8h"
+        },
+        {
+          "name": "Ondansetron",
+          "dose": "4 mg",
+          "route": "IV",
+          "frequency": "prn"
+        },
+        {
+          "name": "Ursodeoxycholic Acid",
+          "dose": "300 mg",
+          "route": "Oral",
+          "frequency": "q12h"
+        },
+        {
+          "name": "ORS / Electrolyte Fluids",
+          "route": "Oral",
+          "frequency": "As tolerated"
+        }
+      ],
+      "nursingNotes": [
+        "Patient appears weak and febrile.",
+        "Skin and sclera visibly yellow.",
+        "Oral intake poor due to nausea.",
+        "IV fluids running well.",
+        "Mother present as attendant."
+      ],
+      "expectedDischarge": {
+        "estimate": "2025-11-25 to 2025-11-27",
+        "followUp": "Repeat liver function test after one week"
+      },
+      "summary": "Patient admitted with high fever, jaundice, and dehydration. Labs show elevated bilirubin and liver enzymes, indicating acute hepatitis. Receiving supportive care, hydration, and close monitoring. Expected to recover with conservative treatment."
+    }
+  },
+  {
+    "medicalHistory": {
+      "allergies": "Penicillin",
+      "pastMedicalHistory": ["Hypertension"],
+      "surgicalHistory": ["Appendectomy (2015)"]
+    },
+    "pastVisits": [
+      {
+        "visitId": "VIS-2022-4455",
+        "date": "2022-04-12",
+        "department": "Cardiology",
+        "complaint": "Chest pain on exertion",
+        "diagnosis": "Stable angina",
+        "treatment": "Nitrates and beta-blocker",
+        "outcome": "Outpatient follow-up",
+        "summary": "Managed medically with lifestyle advice and medications."
+      }
+    ],
+    "currentAdmission": {
+      "admissionId": "ADM-2025-1110",
+      "admissionDate": "2025-11-19",
+      "reason": "Chest pain and breathlessness",
+      "conditionOnArrival": "Stable but dyspneic",
+      "triageLevel": "Orange",
+      "diagnoses": [
+        "Acute coronary syndrome (suspected)",
+        "Exacerbation of hypertension"
+      ],
+      "vitalSigns": {
+        "temperature": "37.2°C",
+        "bloodPressure": "150/92 mmHg",
+        "pulse": 98,
+        "respiratoryRate": 22,
+        "oxygenSaturation": "94% (Room Air)"
+      },
+      "labResults": {
+        "cbc": {
+          "hemoglobin": "12.5 g/dL",
+          "wbc": "9,500 /µL",
+          "platelets": "180,000 /µL"
+        },
+        "cardiacMarkers": {
+          "troponinI": "0.04 ng/mL (borderline)",
+          "ckmb": "3.5 ng/mL"
+        },
+        "electrolytes": {
+          "sodium": "138 mmol/L",
+          "potassium": "4.1 mmol/L"
+        }
+      },
+      "imaging": {
+        "ecg": {
+          "date": "2025-11-19",
+          "findings": ["ST depression in leads V4-V6", "Sinus tachycardia"]
+        },
+        "chestXray": {
+          "date": "2025-11-19",
+          "findings": ["No consolidation", "Cardiomegaly"]
+        }
+      },
+      "treatmentPlan": {
+        "medications": ["Aspirin", "Clopidogrel", "Atorvastatin", "Nitroglycerin"],
+        "monitoring": "Continuous ECG monitoring, repeat troponin after 6 hrs",
+        "procedures": "Coronary angiography if troponin rises or ECG changes"
+      },
+      "currentMedications": [
+        {"name": "Aspirin", "dose": "75 mg", "route": "Oral", "frequency": "Once daily"},
+        {"name": "Atorvastatin", "dose": "40 mg", "route": "Oral", "frequency": "Once nightly"}
+      ],
+      "nursingNotes": ["Patient complains of intermittent chest pain.", "ECG monitored; pain reduced with nitroglycerin."],
+      "expectedDischarge": {"estimate": "2025-11-24", "followUp": "Cardiology outpatient in 1 week"},
+      "summary": "Patient admitted with chest pain and suspected acute coronary syndrome. Initial troponin borderline; under observation and medical management."
+    }
+  }
+]

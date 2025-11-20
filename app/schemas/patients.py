@@ -1,6 +1,7 @@
 from datetime import datetime
 from typing import List, Optional
 from app.schemas.utils import StripStrBaseModel
+from app.schemas.doctors import Doctor
 
 
 # Shared properties
@@ -47,6 +48,9 @@ class PatientUpdate(PatientUpdateInput):
 class PatientInDBBase(PatientBase):
     id: int
     queries_count: int
+    doctor: Optional[Doctor] = None
+    insurance_provider: Optional[str] = None
+    claim_status: Optional[str] = None
 
     class Config:
         from_attributes = True
