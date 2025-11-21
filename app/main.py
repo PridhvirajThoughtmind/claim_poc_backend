@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from app.db_prestart import populate_db
-from app.routers import patients,doctors, insurance, claims, queries, ai, dashboard
+from app.routers import patients, doctors, insurance, claims, queries, ai, dashboard, clinical_summaries
 
 app = FastAPI()
 
@@ -33,4 +33,5 @@ app.include_router(claims.router, prefix="/claims", tags=["claims"])
 app.include_router(queries.router, prefix="/queries", tags=["queries"])
 app.include_router(ai.router, prefix="/ai", tags=["ai"])
 app.include_router(dashboard.router, prefix="/dashboard", tags=["dashboard"])
+app.include_router(clinical_summaries.router, prefix="/clinical-summaries", tags=["clinical_summaries"])
 

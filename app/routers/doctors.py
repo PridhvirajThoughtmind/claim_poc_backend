@@ -29,7 +29,7 @@ async def read_doctor(doctor_id: int, db: AsyncSession = Depends(get_db)):
 async def create_doctor(doctor: schemas.DoctorCreateInput, db: AsyncSession = Depends(get_db)):
     return await crud.doctors.create(db, obj_in=schemas.DoctorCreate(**doctor.model_dump()))
 
-@router.put("/{doctor_id}", response_model=schemas.Doctor)
+@router.patch("/{doctor_id}", response_model=schemas.Doctor)
 async def update_doctor(doctor_id: int, doctor: schemas.DoctorUpdateInput, db: AsyncSession = Depends(get_db)):
     db_doctor = await crud.doctors.get(db, id=doctor_id)
     if not db_doctor:

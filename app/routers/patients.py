@@ -32,7 +32,7 @@ async def create_patient(patient: schemas.PatientCreateInput, db: AsyncSession =
     await crud.patients.update_queries_count(db, patient_id=db_patient.id)
     return db_patient
 
-@router.put("/{patient_id}", response_model=schemas.Patient)
+@router.patch("/{patient_id}", response_model=schemas.Patient)
 async def update_patient(patient_id: int, patient: schemas.PatientUpdateInput, db: AsyncSession = Depends(get_db)):
     db_patient = await crud.patients.get(db, id=patient_id)
     if not db_patient:

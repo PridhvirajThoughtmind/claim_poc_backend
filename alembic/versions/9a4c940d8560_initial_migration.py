@@ -57,6 +57,7 @@ def upgrade() -> None:
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('patient_id', sa.Integer(), nullable=True),
     sa.Column('summary_text', sa.Text(), nullable=True),
+    sa.Column('description', sa.Text(), nullable=True),
     sa.ForeignKeyConstraint(['patient_id'], ['patients.id'], ),
     sa.PrimaryKeyConstraint('id')
     )

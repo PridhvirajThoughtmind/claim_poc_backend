@@ -17,7 +17,7 @@ async def create_query(patient_id: int, query: schemas.QueryCreateInput, db: Asy
     await crud.patients.update_queries_count(db, patient_id=patient_id)
     return db_query
 
-@router.put("/{patient_id}/queries/{query_id}", response_model=schemas.Query)
+@router.patch("/{patient_id}/queries/{query_id}", response_model=schemas.Query)
 async def update_query(patient_id: int, query_id: int, query: schemas.QueryUpdateInput, db: AsyncSession = Depends(get_db)):
     db_query = await crud.queries.get(db, id=query_id)
     if not db_query or db_query.patient_id != patient_id:

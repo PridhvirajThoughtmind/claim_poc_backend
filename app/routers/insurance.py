@@ -12,7 +12,7 @@ async def read_insurance(patient_id: int, db: AsyncSession = Depends(get_db)):
         raise HTTPException(status_code=404, detail="Insurance not found")
     return insurance
 
-@router.put("/{patient_id}/insurance", response_model=schemas.Insurance)
+@router.patch("/{patient_id}/insurance", response_model=schemas.Insurance)
 async def update_insurance(patient_id: int, insurance: schemas.InsuranceUpdateInput, db: AsyncSession = Depends(get_db)):
     db_insurance = await crud.insurance.get_by_patient(db, patient_id)
     if not db_insurance:
