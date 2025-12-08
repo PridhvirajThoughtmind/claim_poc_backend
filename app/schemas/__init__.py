@@ -51,3 +51,8 @@ from app.schemas.ai import (
     GenerateResponseRequest,
     GenerateResponseResponse,
 )
+
+from app.schemas.scribe import (
+    ScribeRequest,
+    ScribeResponse,
+)
