@@ -1,13 +1,15 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from app.db_prestart import populate_db
-from app.routers import patients, doctors, insurance, claims, queries, ai, dashboard, clinical_summaries
+from app.routers.dash import patients, doctors, insurance, claims, queries, ai, dashboard, clinical_summaries
+
+from app.routers.scribe import scribe
 
 app = FastAPI()
 
 @app.on_event("startup")
 async def startup_event():
-    print("printing for fun")
+    print("Populating DB with initial data if necessary...")
     await populate_db()
 
 @app.get("/healthcheck")
@@ -34,4 +36,5 @@ app.include_router(queries.router, prefix="/queries", tags=["queries"])
 app.include_router(ai.router, prefix="/ai", tags=["ai"])
 app.include_router(dashboard.router, prefix="/dashboard", tags=["dashboard"])
 app.include_router(clinical_summaries.router, prefix="/clinical-summaries", tags=["clinical_summaries"])
+app.include_router(scribe.router, prefix="/scribe", tags=["scribe"])
 

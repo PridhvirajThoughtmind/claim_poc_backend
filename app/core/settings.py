@@ -6,6 +6,7 @@ class Settings(BaseSettings):
     AZURE_OPENAI_KEY: str
     AZURE_OPENAI_GPT4o_VERSION: str
     AZURE_OPENAI_EMBEDDING_VERSION: str
+    ASSEMBLY_AI_API_KEY: str
 
     class Config:
         env_file = ".env"
