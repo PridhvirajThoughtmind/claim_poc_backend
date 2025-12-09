@@ -18,11 +18,7 @@ async def healthcheck():
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[
-        "http://localhost:3000",   # React dev server
-        "http://127.0.0.1:3000",
-        "*",  # for development only, allows all origins
-    ],
+    allow_origins=["*"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
